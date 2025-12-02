@@ -266,22 +266,36 @@
 
     .actions {
       margin-top: 40px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .actions button {
-      margin: 6px;
       padding: 12px 24px;
       font-size: 14px;
       border-radius: 999px;
       border: 1px solid var(--accent);
-      background-color: transparent;
-      color: var(--accent);
       cursor: pointer;
-      min-width: 150px;
+      min-width: 160px;
     }
 
-    .actions button:hover {
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--accent);
+    }
+
+    .btn-secondary:hover {
       background-color: var(--accent);
       color: #ffffff;
     }
@@ -368,123 +382,6 @@
       line-height: 1.5;
     }
 
-    /* JD creator section */
-
-    .jd-section {
-      margin-top: 40px;
-      padding: 32px 16px 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    .jd-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.8fr);
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .jd-copy-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0 0 8px;
-    }
-
-    .jd-copy-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 0 0 16px;
-      max-width: 380px;
-    }
-
-    .jd-steps {
-      font-size: 12px;
-      color: var(--muted-soft);
-      list-style: none;
-      padding: 0;
-      margin: 0 0 16px;
-    }
-
-    .jd-steps li {
-      margin-bottom: 6px;
-    }
-
-    .jd-note {
-      font-size: 12px;
-      color: var(--muted-soft);
-    }
-
-    .jd-card {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      padding: 18px 16px 16px;
-      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.02);
-      font-size: 13px;
-    }
-
-    .jd-field-group {
-      margin-bottom: 12px;
-    }
-
-    .jd-label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      margin-bottom: 4px;
-      color: var(--muted);
-    }
-
-    .jd-input,
-    .jd-textarea,
-    .jd-select {
-      width: 100%;
-      box-sizing: border-box;
-      border-radius: 10px;
-      border: 1px solid var(--border-soft);
-      padding: 7px 9px;
-      font-size: 13px;
-      font-family: inherit;
-      background: var(--pill-bg);
-      color: var(--fg);
-    }
-
-    .jd-textarea {
-      min-height: 70px;
-      resize: vertical;
-    }
-
-    .jd-input::placeholder,
-    .jd-textarea::placeholder {
-      color: var(--muted-soft);
-    }
-
-    .jd-select {
-      padding-right: 24px;
-    }
-
-    .jd-footer-note {
-      font-size: 11px;
-      color: var(--muted-soft);
-      margin-top: 6px;
-    }
-
-    .jd-submit {
-      margin-top: 8px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--accent);
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .jd-submit:hover {
-      opacity: 0.95;
-    }
-
     /* Footer */
 
     .footer {
@@ -513,12 +410,6 @@
       }
     }
 
-    @media (max-width: 900px) {
-      .jd-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
     @media (max-width: 700px) {
       .founders-grid {
         grid-template-columns: minmax(0, 1fr);
@@ -533,10 +424,8 @@
         padding: 8px 12px;
       }
       .actions button {
-        display: block;
         width: 100%;
         max-width: 280px;
-        margin: 6px auto;
       }
     }
   </style>
@@ -596,9 +485,6 @@
             <button type="button" data-prompt="What roles do you recruit?">
               What roles do you recruit?
             </button>
-            <button type="button" data-target="jd">
-              Create a job description
-            </button>
           </div>
         </div>
 
@@ -608,8 +494,16 @@
         </div>
 
         <div class="actions">
-          <button onclick="window.location='mailto:hello@ethiq.io'">Talk to a human</button>
-          <button onclick="window.location='mailto:hello@ethiq.io?subject=CV%20Submission'">Submit my CV</button>
+          <button
+            class="btn-secondary"
+            onclick="window.location='mailto:hello@ethiq.io?subject=CV%20Submission'">
+            Submit my CV
+          </button>
+          <button
+            class="btn-primary"
+            onclick="window.location='mailto:hello@ethiq.io'">
+            Talk to a human
+          </button>
         </div>
       </section>
 
@@ -650,112 +544,6 @@
         </div>
       </section>
 
-      <!-- JD creator -->
-      <section class="jd-section" id="jdSection">
-        <div class="jd-inner">
-          <div>
-            <h2 class="jd-copy-title">Create my job description</h2>
-            <p class="jd-copy-sub">
-              Talk us through what you are trying to hire and we will turn it into a clear, honest job description
-              that senior engineers will actually read.
-            </p>
-
-            <ul class="jd-steps">
-              <li>1. Share the basics about the role and your team.</li>
-              <li>2. Paste any rough notes, links or recordings.</li>
-              <li>3. We send back a simple job description you can use on your site or in your ATS.</li>
-            </ul>
-
-            <p class="jd-note">
-              This is a free service. If you want help with the hire after that, we can talk.
-            </p>
-          </div>
-
-          <div class="jd-card">
-            <form id="jdForm" onsubmit="event.preventDefault(); alert('Thanks. This is a demo. In the real product we would send this to Ethiq.');">
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-title">Role title</label>
-                <input id="jd-title" class="jd-input" type="text" placeholder="Senior product engineer" />
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-company">Company and website</label>
-                <input id="jd-company" class="jd-input" type="text" placeholder="Company name and link" />
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-location">Location and remote policy</label>
-                <input id="jd-location" class="jd-input" type="text" placeholder="London, hybrid 2 days a week" />
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-seniority">Seniority level</label>
-                <select id="jd-seniority" class="jd-select">
-                  <option value="">Select one</option>
-                  <option>Junior</option>
-                  <option>Mid level</option>
-                  <option>Senior</option>
-                  <option>Lead</option>
-                  <option>Head of</option>
-                  <option>Director</option>
-                </select>
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-salary">Salary range and equity</label>
-                <input id="jd-salary" class="jd-input" type="text" placeholder="Example: 90k to 110k plus stock options" />
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-outcomes">What does success look like in 12 months?</label>
-                <textarea id="jd-outcomes" class="jd-textarea" placeholder="Three to five concrete outcomes you care about most."></textarea>
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-must">Must have experience</label>
-                <textarea id="jd-must" class="jd-textarea" placeholder="Five to eight skills or experiences that really matter."></textarea>
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-nice">Nice to have</label>
-                <textarea id="jd-nice" class="jd-textarea" placeholder="Good to have, but not deal breakers."></textarea>
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-tone">Tone of voice</label>
-                <select id="jd-tone" class="jd-select">
-                  <option value="">Pick a tone</option>
-                  <option>Straight talking</option>
-                  <option>Friendly and informal</option>
-                  <option>Serious and corporate</option>
-                  <option>Product led and practical</option>
-                </select>
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-links">Links or notes</label>
-                <textarea id="jd-links" class="jd-textarea" placeholder="Paste any existing job description, Loom link, voice note or doc you want us to use."></textarea>
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-contact-name">Your name</label>
-                <input id="jd-contact-name" class="jd-input" type="text" placeholder="Your name" />
-              </div>
-
-              <div class="jd-field-group">
-                <label class="jd-label" for="jd-contact-email">Where should we send the draft?</label>
-                <input id="jd-contact-email" class="jd-input" type="email" placeholder="you@company.com" />
-              </div>
-
-              <button class="jd-submit" type="submit">Send my brief to Ethiq</button>
-              <div class="jd-footer-note">
-                In the real product this would send your answers to Ethiq and trigger a draft job description.
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
       <footer class="footer">
         Email <a href="mailto:hello@ethiq.io">hello@ethiq.io</a> if you want to talk about a role, a team plan,
         or keep an eye on great opportunities.
@@ -773,11 +561,11 @@
       themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
     });
 
+    // Typing effect for demo response
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const aiResponse = document.getElementById('aiResponse');
     const aiResponseText = document.getElementById('aiResponseText');
-    const jdSection = document.getElementById('jdSection');
     let typingInterval = null;
 
     function startTyping() {
@@ -802,7 +590,6 @@
       }, 18);
     }
 
-    // Chat submit
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const value = chatInput.value.trim();
@@ -810,17 +597,9 @@
       startTyping();
     });
 
-    // Suggestion buttons
     document.querySelectorAll('.chat-suggestions button').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-target');
         const prompt = btn.getAttribute('data-prompt') || '';
-
-        if (target === 'jd') {
-          jdSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          return;
-        }
-
         if (prompt) {
           chatInput.value = prompt;
           startTyping();
