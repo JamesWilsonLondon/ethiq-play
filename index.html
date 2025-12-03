@@ -56,11 +56,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
     }
 
     .brand-left {
       display: flex;
       align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     .brand-right {
@@ -99,6 +102,32 @@
     .logo-box span {
       position: relative;
       z-index: 1;
+    }
+
+    .brand-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand-nav a {
+      text-decoration: none;
+      color: var(--muted-soft);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .brand-nav a:hover {
+      border-color: var(--border-soft);
+      color: var(--fg);
+      background: var(--pill-bg);
+    }
+
+    .brand-nav a.nav-primary {
+      border-color: var(--border-soft);
     }
 
     .theme-toggle {
@@ -161,7 +190,7 @@
       margin: 0 auto;
     }
 
-    /* Chat window wraps messages + input, like ChatGPT */
+    /* Chat window */
     .chat-window {
       margin-top: 8px;
       border-radius: 20px;
@@ -246,7 +275,6 @@
       margin-bottom: 0;
     }
 
-    /* Markdown styles inside assistant messages */
     .message.assistant h1,
     .message.assistant h2,
     .message.assistant h3 {
@@ -389,6 +417,52 @@
       color: #ffffff;
     }
 
+    .how {
+      margin-top: 24px;
+      padding: 20px 16px 4px;
+      border-top: 1px solid var(--border);
+    }
+
+    .how-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    .how-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .how-sub {
+      margin: 0 0 12px;
+      color: var(--muted);
+      max-width: 380px;
+    }
+
+    .how-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .how-list li {
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .how-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted-soft);
+      margin-bottom: 4px;
+    }
+
     .founders {
       margin-top: 16px;
       padding: 24px 16px 16px;
@@ -478,6 +552,20 @@
       margin-top: 16px;
     }
 
+    .footer-links {
+      margin-top: 4px;
+    }
+
+    .footer-links a {
+      color: var(--muted-soft);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
     a {
       color: var(--link);
       text-decoration: none;
@@ -493,6 +581,9 @@
       }
       .chat-window {
         height: 55vh;
+      }
+      .how-inner {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -521,9 +612,17 @@
 
   <header class="brand-header">
     <div class="brand-left">
-      <div class="logo-box">
-        <span>ethiq</span>
-      </div>
+      <a href="/" aria-label="Ethiq home">
+        <div class="logo-box">
+          <span>ethiq</span>
+        </div>
+      </a>
+      <nav class="brand-nav">
+        <a href="for-companies.html" class="nav-primary">For teams</a>
+        <a href="for-engineers.html">For engineers</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+      </nav>
     </div>
     <div class="brand-right">
       <button class="theme-toggle" id="themeToggle">Dark mode</button>
@@ -542,7 +641,8 @@
         </h1>
 
         <p class="hero-sub">
-          Tell Ethiq what you are trying to hire or what you want next and we will figure out the rest.
+          Tell Ethiq what you want to hire or where you want to move next.
+          We turn that into a simple plan, real conversations and offers that stick.
         </p>
       </section>
 
@@ -570,7 +670,7 @@
               type="text"
               id="chatInput"
               autocomplete="off"
-              placeholder="Ask Ethiq anything about hiring or your next role..."
+              placeholder="Tell us what you are hiring for or what you want next..."
             />
             <button type="submit" class="chat-send" aria-label="Send">↩︎</button>
           </form>
@@ -600,10 +700,41 @@
         </button>
         <button
           class="btn-primary"
-          onclick="window.location='mailto:hello@ethiq.io'">
+          onclick="window.location='mailto:hello@ethiq.io?subject=Talk%20to%20Ethiq'">
           Talk to a human
         </button>
       </div>
+
+      <section class="how">
+        <div class="how-inner">
+          <div>
+            <div class="how-tag">For teams</div>
+            <h2 class="how-title">Simple search, small shortlist</h2>
+            <p class="how-sub">
+              You send a clear brief. We run a tight search and keep your calendar free of noise.
+            </p>
+            <ul class="how-list">
+              <li>1. Share what you need and why it matters</li>
+              <li>2. We agree on scope, salary and process</li>
+              <li>3. You meet a focused shortlist, not a pile of CVs</li>
+              <li>4. We help you close and keep the hire</li>
+            </ul>
+          </div>
+          <div>
+            <div class="how-tag">For engineers</div>
+            <h2 class="how-title">Good roles, no weird pressure</h2>
+            <p class="how-sub">
+              We work with product led teams that treat engineers like adults.
+            </p>
+            <ul class="how-list">
+              <li>1. Tell us what you want next and what you avoid</li>
+              <li>2. We send a small set of real options</li>
+              <li>3. You meet the team, not a long panel</li>
+              <li>4. We help you compare offers and pick well</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <section class="founders">
         <div class="founders-inner">
@@ -642,8 +773,14 @@
       </section>
 
       <footer class="footer">
-        Email <a href="mailto:hello@ethiq.io">hello@ethiq.io</a> if you want to talk about a role, a team plan,
-        or keep an eye on great opportunities.
+        <div>
+          Email <a href="mailto:hello@ethiq.io">hello@ethiq.io</a> if you want to talk about a role, a team plan,
+          or keep an eye on great opportunities.
+        </div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy</a> ·
+          <a href="about.html">About Ethiq</a>
+        </div>
       </footer>
 
     </div>
