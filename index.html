@@ -13,10 +13,16 @@
       --muted: #6b7280;
       --muted-soft: #9ca3af;
       --border: #e5e7eb;
+      --border-soft: #d1d5db;
       --accent: #111827;
       --accent-soft: #2563eb;
       --link: #2563eb;
       --live-green: #22c55e;
+
+      /* chat specific */
+      --pill-bg: #ffffff;
+      --pill-bg-soft: #f9fafb;
+      --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.08);
     }
 
     body.dark {
@@ -26,10 +32,14 @@
       --muted: #9ca3af;
       --muted-soft: #6b7280;
       --border: #1f2937;
+      --border-soft: #374151;
       --accent: #f9fafb;
       --accent-soft: #60a5fa;
       --link: #93c5fd;
       --live-green: #4ade80;
+      --pill-bg: #030712;
+      --pill-bg-soft: #030712;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.6);
     }
 
     * {
@@ -211,6 +221,7 @@
       flex-wrap: wrap;
       gap: 8px;
       justify-content: center;
+      margin-bottom: 16px;
     }
 
     .hero-btn {
@@ -234,7 +245,168 @@
       color: #ffffff;
     }
 
-    /* Sections */
+    /* GPT chat window */
+
+    .chat-window {
+      margin-top: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--pill-bg);
+      box-shadow: var(--shadow-soft);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      height: 60vh;
+      min-height: 360px;
+    }
+
+    .chat-header {
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border-soft);
+      font-size: 12px;
+      color: var(--muted-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .chat-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--live-green);
+      box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
+      margin-right: 6px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px 14px 8px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      background: var(--pill-bg);
+    }
+
+    .empty-hint {
+      font-size: 13px;
+      color: var(--muted-soft);
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .message {
+      max-width: 80%;
+      margin-bottom: 8px;
+      padding: 7px 9px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .message.user {
+      margin-left: auto;
+      background: #111827;
+      color: #ffffff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .message.assistant {
+      margin-right: auto;
+      background: var(--card);
+      color: var(--fg);
+      border-bottom-left-radius: 4px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .message.assistant p {
+      margin: 0 0 0.4rem 0;
+    }
+
+    .message.assistant p:last-child {
+      margin-bottom: 0;
+    }
+
+    .message.assistant a {
+      color: var(--link);
+      text-decoration: underline;
+    }
+
+    .message.assistant code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      background-color: var(--pill-bg-soft);
+      padding: 0.1rem 0.25rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .chat-input-area {
+      border-top: 1px solid var(--border-soft);
+      padding: 8px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: var(--pill-bg);
+      border-radius: 0 0 20px 20px;
+    }
+
+    .chat-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background-color: var(--card);
+      padding: 6px 10px;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+      color: var(--fg);
+    }
+
+    .chat-input-row input::placeholder {
+      color: var(--muted-soft);
+    }
+
+    .chat-send {
+      border: none;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 13px;
+      cursor: pointer;
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .chat-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .chat-suggestions button {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      font-size: 11px;
+      background-color: var(--pill-bg);
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .chat-suggestions button:hover {
+      background-color: var(--pill-bg-soft);
+    }
+
+    /* Sections below chat */
 
     .section {
       margin-top: 28px;
@@ -255,8 +427,6 @@
       margin: 0;
       max-width: 520px;
     }
-
-    /* Simple cards */
 
     .two-cards {
       display: grid;
@@ -384,68 +554,6 @@
       color: var(--accent-soft);
     }
 
-    /* Ask Ethiq */
-
-    .ask-box {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      padding: 14px 14px 12px;
-      font-size: 13px;
-    }
-
-    .ask-heading {
-      font-size: 15px;
-      margin: 0 0 4px;
-    }
-
-    .ask-sub {
-      font-size: 12px;
-      color: var(--muted);
-      margin: 0 0 10px;
-    }
-
-    .chat-row {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      padding: 6px 9px;
-      background: #f9fafb;
-    }
-
-    .chat-row input {
-      flex: 1;
-      border: none;
-      outline: none;
-      background: transparent;
-      font-size: 13px;
-      color: var(--fg);
-    }
-
-    .chat-send {
-      border: none;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 12px;
-      cursor: pointer;
-      background: var(--accent);
-      color: #ffffff;
-    }
-
-    .ai-response {
-      display: none;
-      margin-top: 10px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #f9fafb;
-      padding: 8px 9px;
-      font-size: 12px;
-      color: var(--muted);
-      white-space: pre-wrap;
-    }
-
     /* Founders */
 
     .founders-box {
@@ -545,6 +653,10 @@
         grid-template-columns: minmax(0, 1fr);
       }
 
+      .chat-window {
+        height: 55vh;
+      }
+
       .main {
         padding: 16px 14px 32px;
       }
@@ -602,7 +714,53 @@
         </div>
       </section>
 
-      <!-- Two simple cards -->
+      <!-- GPT chat window -->
+      <section class="chat-window" aria-label="Ethiq GPT">
+        <div class="chat-header">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span class="chat-status-dot"></span>
+            <span>Ethiq GPT · recruitment only</span>
+          </div>
+          <div style="font-size:11px;color:var(--muted-soft);">
+            Ask about hiring, roles or your next move.
+          </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="empty-hint">
+            Ask Ethiq about hiring your next engineer or planning your next move.
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <form class="chat-input-row" id="chatForm">
+            <input
+              type="text"
+              id="chatInput"
+              autocomplete="off"
+              placeholder="Tell Ethiq what you are hiring for or what you want next..."
+            />
+            <button type="submit" class="chat-send" aria-label="Send">↩︎</button>
+          </form>
+
+          <div class="chat-suggestions">
+            <button type="button" data-prompt="I want a new engineering role">
+              I want a new engineering role
+            </button>
+            <button type="button" data-prompt="I need to hire an AI engineer">
+              I need to hire an AI engineer
+            </button>
+            <button type="button" data-prompt="Can you help me scope a founding engineer role?">
+              Scope a founding engineer role
+            </button>
+            <button type="button" data-prompt="What types of roles do you recruit?">
+              What roles do you recruit?
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simple cards -->
       <section class="section" id="hiring">
         <div class="section-header">
           <h2 class="section-title">How Ethiq fits in</h2>
@@ -683,21 +841,6 @@
         </div>
       </section>
 
-      <!-- Ask Ethiq (demo) -->
-      <section class="section" id="ask-ethiq">
-        <div class="ask-box">
-          <h3 class="ask-heading">Ask Ethiq anything (demo)</h3>
-          <p class="ask-sub">In the actual product this would answer with your context. Here it is just a placeholder.</p>
-
-          <form class="chat-row" id="chatForm">
-            <input id="chatInput" type="text" placeholder="Ask about hiring or your next role...">
-            <button type="submit" class="chat-send">Ask</button>
-          </form>
-
-          <div class="ai-response" id="aiResponse"></div>
-        </div>
-      </section>
-
       <!-- Founders -->
       <section class="section" id="about">
         <div class="founders-box">
@@ -741,7 +884,11 @@
     </div>
   </main>
 
+  <!-- Markdown parser for GPT replies -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <script>
+    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark');
@@ -750,19 +897,84 @@
         : 'Dark mode';
     });
 
+    // GPT chat logic (real endpoint)
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
-    const aiResponse = document.getElementById('aiResponse');
+    const chatMessages = document.getElementById('chatMessages');
 
-    chatForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const value = (chatInput.value || "").trim();
+    function clearEmptyHint() {
+      const hint = chatMessages.querySelector('.empty-hint');
+      if (hint) hint.remove();
+    }
+
+    function scrollToBottom() {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function addUserMessage(text) {
+      clearEmptyHint();
+      const el = document.createElement('div');
+      el.className = 'message user';
+      el.textContent = text;
+      chatMessages.appendChild(el);
+      scrollToBottom();
+      return el;
+    }
+
+    function addAssistantMessage(text, asMarkdown = true) {
+      clearEmptyHint();
+      const el = document.createElement('div');
+      el.className = 'message assistant';
+      if (asMarkdown) {
+        el.innerHTML = marked.parse(text || "");
+      } else {
+        el.textContent = text || "";
+      }
+      chatMessages.appendChild(el);
+      scrollToBottom();
+      return el;
+    }
+
+    async function sendToEthiq(message) {
+      const res = await fetch("/api/ethiq-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+      const data = await res.json();
+      return data.reply;
+    }
+
+    async function handleUserMessage(rawText) {
+      const value = (rawText || "").trim();
       if (!value) return;
-      aiResponse.style.display = 'block';
-      aiResponse.textContent =
-        "This is a demo reply from Ethiq.\n\n" +
-        "In the real product this would answer based on your question and the market.\n\n" +
-        "For now, email hello@ethiq.io.";
+
+      addUserMessage(value);
+      const thinkingEl = addAssistantMessage("Thinking about your hiring question...", false);
+
+      try {
+        const reply = await sendToEthiq(value);
+        thinkingEl.innerHTML = marked.parse(reply || "");
+      } catch (err) {
+        console.error(err);
+        thinkingEl.textContent = "Ethiq had a small meltdown. Try again?";
+      }
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const value = chatInput.value;
+      chatInput.value = "";
+      handleUserMessage(value);
+    });
+
+    document.querySelectorAll('.chat-suggestions button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const prompt = btn.getAttribute('data-prompt') || '';
+        if (!prompt) return;
+        chatInput.value = "";
+        handleUserMessage(prompt);
+      });
     });
   </script>
 </body>
