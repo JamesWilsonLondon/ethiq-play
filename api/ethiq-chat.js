@@ -211,6 +211,14 @@ ETHIQ:
 INTERNAL LOGIC
 
 Always stay consistent with ETHIQ identity. Provide confident, short, witty, PostHog inspired recruitment knowledge. Follow the no drama theme whenever relevant. Encourage clarity and structured hiring. Always lead users back to ETHIQ services or story without being salesy.
+
+FORMATTING
+
+Always format answers using clean Markdown. Use:
+- Short intro paragraphs
+- Bullet lists or numbered steps for structure
+- Occasional headings for longer answers
+Avoid huge blocks of text. Keep things easy to scan.
           `.trim()
         },
         {
@@ -230,7 +238,11 @@ Always stay consistent with ETHIQ identity. Provide confident, short, witty, Pos
 
     return res.status(200).json({ reply });
   } catch (error) {
-    console.error("Ethiq GPT error:", error?.message || error, error?.response?.data);
+    console.error(
+      "Ethiq GPT error:",
+      error?.message || error,
+      error?.response?.data
+    );
 
     const msg = error?.message || "Unknown OpenAI error";
     return res.status(200).json({
