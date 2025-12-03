@@ -1,30 +1,59 @@
-// Temporary debug version of the API – no OpenAI involved
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 export default async function handler(req, res) {
-  console.log("DEBUG: /api/ethiq-chat called with method", req.method);
+  console.log("Ethiq GPT handler called with method", req.method);
 
   if (req.method !== "POST") {
     res.setHeader("Allow", ["POST"]);
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("Missing OPENAI_API_KEY");
+    return res.status(500).json({ error: "Server misconfigured" });
+  }
+
   try {
-    // In Vercel Node functions, JSON body is already parsed if
-    // Content-Type: application/json is sent.
     const { message } = req.body || {};
 
-    console.log("DEBUG: body received:", req.body);
+    console.log("Ethiq GPT body:", req.body);
 
     if (!message || typeof message !== "string") {
       return res.status(400).json({ error: "Message is required" });
     }
 
-    // Just echo the message back so we know the plumbing works
-    return res.status(200).json({
-      reply: `Echo from Ethiq test API: "${message}"`
+    const completion = await client.chat.completions.create({
+      model: "gpt-4.1-mini",
+      messages: [
+        {
+          role: "system",
+          content: `
+You are Ethiq, a casual, opinionated recruiter specialising in AI, software and data teams.
+
+Only answer questions about:
+- hiring engineers, AI, product, data
+- job searches for engineers
+- how Ethiq works, who you work with, what you do
+
+If the user asks for medical, legal or financial advice, reply:
+"I'm only here for recruiting questions. Try ChatGPT for that one."
+
+Keep replies short, practical and human. No corporate fluff.
+          `.trim()
+        },
+        {
+          role: "user",
+          content: message
+        }
+      ],
+      temperature: 0.6,
+      max_tokens: 400
     });
-  } catch (error) {
-    console.error("DEBUG: handler crashed:", error);
-    return res.status(500).json({ error: "Handler crashed" });
-  }
-}
+
+    const reply =
+      completion?.choices?.[0]?.message?.content?.trim() ||
+      "Sorry, Ethiq
