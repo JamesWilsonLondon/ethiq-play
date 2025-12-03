@@ -56,4 +56,15 @@ Keep replies short, practical and human. No corporate fluff.
 
     const reply =
       completion?.choices?.[0]?.message?.content?.trim() ||
-      "Sorry, Ethiq
+      "Sorry, Ethiq couldn't think of anything to say.";
+
+    console.log("Ethiq GPT reply:", reply);
+
+    return res.status(200).json({ reply });
+  } catch (error) {
+    console.error("Ethiq GPT error:", error);
+    return res.status(500).json({
+      error: "OpenAI error: " + (error?.message || "Unknown error")
+    });
+  }
+}
