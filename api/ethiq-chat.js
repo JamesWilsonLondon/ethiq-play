@@ -31,11 +31,10 @@ If user asks for medical, legal or financial advice reply:
 "I'm only here for recruiting questions. Try ChatGPT for that one."
 
 Keep it short, helpful and real.
-      `,
+      `.trim(),
       input: message
     });
 
-    // SAFE extraction: handles all edge cases
     const reply =
       response?.output?.[0]?.content?.[0]?.text ??
       response?.output_text ??
