@@ -12,20 +12,25 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  const { message } = req.body || {};
+  console.log("Ethiq GPT body:", req.body);
+
+  // If the message is missing, don't throw – just reply nicely
+  if (!message || typeof message !== "string") {
+    return res.status(200).json({
+      reply: "Tell me what you’re trying to hire or what move you’re considering."
+    });
+  }
+
+  // If API key is missing, don’t crash – tell us in the reply and logs
   if (!process.env.OPENAI_API_KEY) {
-    console.error("Missing OPENAI_API_KEY");
-    return res.status(500).json({ error: "Server misconfigured" });
+    console.error("Ethiq GPT error: OPENAI_API_KEY is missing in environment");
+    return res.status(200).json({
+      reply: "Ethiq isn’t fully wired up yet (missing API key on the server)."
+    });
   }
 
   try {
-    const { message } = req.body || {};
-
-    console.log("Ethiq GPT body:", req.body);
-
-    if (!message || typeof message !== "string") {
-      return res.status(400).json({ error: "Message is required" });
-    }
-
     const completion = await client.chat.completions.create({
       model: "gpt-4.1-mini",
       messages: [
@@ -56,15 +61,18 @@ Keep replies short, practical and human. No corporate fluff.
 
     const reply =
       completion?.choices?.[0]?.message?.content?.trim() ||
-      "Sorry, Ethiq couldn't think of anything to say.";
+      "Sorry, Ethiq couldn’t think of anything to say.";
 
     console.log("Ethiq GPT reply:", reply);
 
     return res.status(200).json({ reply });
   } catch (error) {
-    console.error("Ethiq GPT error:", error);
-    return res.status(500).json({
-      error: "OpenAI error: " + (error?.message || "Unknown error")
+    // Log *everything* so we can see the real cause in Vercel
+    console.error("Ethiq GPT error:", error?.message || error, error?.response?.data);
+
+    const msg = error?.message || "Unknown OpenAI error";
+    return res.status(200).json({
+      reply: `Ethiq hit a config issue talking to OpenAI: ${msg}`
     });
   }
 }
