@@ -1,1 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ethiq · For software and data engineers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Same styling pattern as other pages */
+    :root {
+      --bg: #ffffff;
+      --fg: #111827;
+      --muted: #6b7280;
+      --muted-soft: #9ca3af;
+      --border: #e5e7eb;
+      --border-soft: #d1d5db;
+      --pill-bg: #f9fafb;
+      --pill-bg-soft: #f3f4f6;
+      --accent: #111827;
+      --link: #2563eb;
+    }
+    body.dark {
+      --bg: #020617;
+      --fg: #e5e7eb;
+      --muted: #9ca3af;
+      --muted-soft: #6b7280;
+      --border: #1f2937;
+      --border-soft: #374151;
+      --pill-bg: #020617;
+      --pill-bg-soft: #020617;
+      --accent: #f9fafb;
+      --link: #60a5fa;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+      background-color: var(--bg);
+      color: var(--fg);
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .brand-header {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .brand-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-box {
+      position: relative;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1.5px solid var(--fg);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: lowercase;
+      letter-spacing: 0.04em;
+      box-shadow: 0 3px 0 rgba(15, 23, 42, 0.25);
+      transform: rotate(-7deg);
+    }
+    .logo-box::before {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 6px;
+      border: 1px solid var(--border-soft);
+      opacity: 0.9;
+    }
+    .logo-box span {
+      position: relative;
+      z-index: 1;
+    }
+    .brand-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+    .brand-nav a {
+      text-decoration: none;
+      color: var(--muted-soft);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    .brand-nav a:hover {
+      border-color: var(--border-soft);
+      color: var(--fg);
+      background: var(--pill-bg);
+    }
+    .brand-nav a.nav-primary {
+      border-color: var(--border-soft);
+    }
+    .theme-toggle {
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 5px 10px;
+      background: var(--pill-bg);
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .theme-toggle:hover {
+      background: var(--pill-bg-soft);
+    }
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 20px 16px 40px;
+    }
+    .layout {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .hero {
+      padding-top: 8px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .hero-heading {
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin: 0 0 10px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 0 16px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      color: var(--muted-soft);
+      margin-bottom: 4px;
+    }
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      margin-right: 6px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 24px;
+    }
+    .card {
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--pill-bg);
+      padding: 18px 16px 16px;
+      font-size: 13px;
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+    }
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .card li {
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 14px;
+      max-width: 520px;
+    }
+    .roles-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 12px;
+    }
+    .roles-list span {
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      padding: 3px 8px;
+      background: var(--pill-bg);
+      color: var(--muted-soft);
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn {
+      padding: 10px 18px;
+      font-size: 13px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      background: var(--accent);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .footer {
+      font-size: 11px;
+      color: var(--muted-soft);
+      text-align: center;
+      padding: 16px 16px 24px;
+      border-top: 1px solid var(--border);
+      margin-top: 16px;
+    }
+    .footer-links a {
+      color: var(--muted-soft);
+      text-decoration: none;
+      margin: 0 6px;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    a {
+      color: var(--link);
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 840px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="brand-header">
+    <div class="brand-left">
+      <a href="/" aria-label="Ethiq home">
+        <div class="logo-box">
+          <span>ethiq</span>
+        </div>
+      </a>
+      <nav class="brand-nav">
+        <a href="for-companies.html">For teams</a>
+        <a href="for-engineers.html" class="nav-primary">For engineers</a>
+        <a href="how-it-works.html">How it works</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="brand-right">
+      <button class="theme-toggle" id="themeToggle">Dark mode</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="layout">
+      <section class="hero">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Quiet search or open search
+        </div>
+        <div class="hero-eyebrow">For software, ML and data engineers</div>
+        <h1 class="hero-heading">Good engineering jobs with teams that act like adults</h1>
+        <p class="hero-sub">
+          We work with product led companies that ship real things and respect your time.
+          No spammy messages, no pressure to move if it is not right.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="mailto:hello@ethiq.io?subject=CV%20for%20Ethiq&body=Share%20your%20GitHub%2C%20LinkedIn%20or%20CV%20and%20what%20you%20want%20next.">
+            Send my CV
+          </a>
+          <a class="btn btn-outline" href="index.html">
+            Ask Ethiq GPT about my options
+          </a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>What you get from us</h2>
+          <ul>
+            <li>Teams that build real products instead of only decks</li>
+            <li>Clear salary ranges and honest details on equity</li>
+            <li>Simple processes without ten rounds of homework</li>
+            <li>Straight answers when something is off</li>
+          </ul>
+          <p style="margin-top:10px;">
+            You can run a quiet search while you stay in your current role, or explore openly if you are ready to move.
+          </p>
+        </article>
+
+        <article class="card">
+          <h2>Roles we tend to see</h2>
+          <p style="margin-bottom:8px;">
+            A sample of active and recent searches.
+          </p>
+          <div class="roles-list">
+            <span>Senior product engineer</span>
+            <span>Founding engineer</span>
+            <span>Backend engineer</span>
+            <span>Full stack in TypeScript</span>
+            <span>ML engineer</span>
+            <span>Data engineer</span>
+            <span>Staff engineer</span>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <h2 class="section-title">How it works for engineers</h2>
+        <p class="section-sub">
+          We keep the process short and clear so you can focus on the fit.
+        </p>
+        <div class="grid">
+          <article class="card">
+            <h2>Step 1 · Share context</h2>
+            <ul>
+              <li>Send a short note with what you are doing now</li>
+              <li>Tell us what you want next and what you want to avoid</li>
+              <li>We look at your profile and reply with honest thoughts</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Step 2 · Real options</h2>
+            <ul>
+              <li>We only send you roles that match what you asked for</li>
+              <li>You decide which ones are worth a chat with the team</li>
+              <li>We help you compare offers and choose what feels right</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>
+      Email <a href="mailto:hello@ethiq.io">hello@ethiq.io</a> if you want to start a quiet search or just test the market.
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a> ·
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+    });
+  </script>
+</body>
+</html>
 
