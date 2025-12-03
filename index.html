@@ -231,16 +231,17 @@
     }
 
     .ai-response {
-      max-width: 600px;
-      margin: 28px auto 0;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--pill-bg);
-      font-size: 13px;
-      line-height: 1.6;
+      max-width: 680px;
+      margin: 32px auto 0;
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      background: var(--bg);
+      font-size: 14px;
+      line-height: 1.7;
       text-align: left;
       display: none;
+      box-shadow: var(--shadow-soft);
     }
 
     .ai-response-label {
@@ -252,30 +253,35 @@
     }
 
     /* Markdown styles for the AI response content */
+    #aiResponseText {
+      margin-top: 4px;
+    }
+
     #aiResponseText h1,
     #aiResponseText h2,
     #aiResponseText h3 {
       font-weight: 600;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
     }
 
     #aiResponseText p {
-      margin: 0 0 0.75rem 0;
+      margin: 0 0 0.9rem 0;
     }
 
-    #aiResponseText ul {
-      padding-left: 1.25rem;
-      margin: 0 0 0.75rem 0;
+    #aiResponseText p:last-child {
+      margin-bottom: 0;
     }
 
+    #aiResponseText ul,
     #aiResponseText ol {
-      padding-left: 1.25rem;
-      margin: 0 0 0.75rem 0;
+      padding-left: 1.6rem;
+      margin: 0 0 0.9rem 0;
     }
 
     #aiResponseText li {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.35rem;
     }
 
     #aiResponseText strong {
@@ -288,7 +294,8 @@
     }
 
     #aiResponseText code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
       background-color: var(--pill-bg-soft);
       padding: 0.15rem 0.3rem;
       border-radius: 4px;
