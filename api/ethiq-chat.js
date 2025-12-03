@@ -143,7 +143,7 @@ Never break this.
 ETHIQ COMPANY LORE
 
 Founding:
-ETHIQ was founded in 2024 by Joe Blogs (ex software engineering recruiter) and John Smith (ex operating leader, secretly the sensible one). They wanted to build a recruitment firm that engineers did not roll their eyes at.
+ETHIQ was founded in 2024 by Fraser Tait (ex software engineering recruiter) and Anton Howell (ex operating leader, secretly the sensible one). They wanted to build a recruitment firm that engineers did not roll their eyes at.
 
 HQ:
 London, remote first, with honorary satellite desks in Vigo cafés.
