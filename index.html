@@ -61,8 +61,6 @@
       transition: background-color 0.25s ease, color 0.25s ease, background-image 0.25s ease;
     }
 
-    /* Simple global */
-
     a {
       color: var(--link);
       text-decoration: none;
@@ -71,8 +69,6 @@
     a:hover {
       text-decoration: underline;
     }
-
-    /* Header */
 
     .brand-header {
       width: 100%;
@@ -146,7 +142,6 @@
       border: 1px solid var(--border-soft);
       background: rgba(255, 255, 255, 0.7);
       color: var(--muted);
-      text-decoration: none;
       backdrop-filter: blur(4px);
     }
 
@@ -156,7 +151,6 @@
 
     .nav-link:hover {
       border-color: var(--accent-soft);
-      text-decoration: none;
     }
 
     .theme-toggle {
@@ -173,8 +167,6 @@
       border-color: var(--accent-soft);
     }
 
-    /* Main layout */
-
     .main {
       flex: 1;
       display: flex;
@@ -186,8 +178,6 @@
       width: 100%;
       max-width: 960px;
     }
-
-    /* Hero */
 
     .hero {
       text-align: center;
@@ -207,10 +197,6 @@
       line-height: 1.05;
       letter-spacing: -0.05em;
       margin: 0 0 10px;
-    }
-
-    .hero-heading span {
-      display: block;
     }
 
     .hero-sub {
@@ -246,21 +232,6 @@
       color: var(--accent);
     }
 
-    .hero-btn.secondary:hover {
-      background: var(--accent-subtle);
-    }
-
-    .hero-btn.primary:hover {
-      opacity: 0.94;
-    }
-
-    .hero-footnote {
-      font-size: 12px;
-      color: var(--muted-soft);
-    }
-
-    /* Quick three step strip under hero */
-
     .quick-steps {
       margin-top: 26px;
       display: grid;
@@ -268,44 +239,15 @@
       gap: 10px;
     }
 
-    @media (max-width: 720px) {
-      .quick-steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
     .quick-step {
       border-radius: 16px;
       border: 1px solid var(--border);
       background: var(--bg-soft);
       padding: 10px 12px;
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03);
-      text-align: left;
       font-size: 12px;
       color: var(--muted);
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.03);
     }
-
-    body.dark .quick-step {
-      background: #020617;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .quick-step-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted-soft);
-      margin-bottom: 4px;
-    }
-
-    .quick-step-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 2px;
-      color: var(--accent);
-    }
-
-    /* Hiring section - founders vs roles */
 
     .section {
       margin-top: 34px;
@@ -319,13 +261,6 @@
       margin-bottom: 16px;
     }
 
-    @media (max-width: 640px) {
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
     .section-title {
       font-size: 18px;
       margin: 0 0 4px;
@@ -337,21 +272,10 @@
       margin: 0;
     }
 
-    .section-link {
-      font-size: 12px;
-      color: var(--muted-soft);
-    }
-
     .split-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
-    }
-
-    @media (max-width: 720px) {
-      .split-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     .tile {
@@ -359,16 +283,11 @@
       border: 1px solid var(--border);
       background: var(--bg-soft);
       padding: 14px 14px 12px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
       display: grid;
       grid-template-rows: auto auto 1fr;
       gap: 8px;
       font-size: 13px;
-    }
-
-    body.dark .tile {
-      background: #020617;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
     }
 
     .tile-label {
@@ -400,50 +319,30 @@
       color: var(--muted);
     }
 
-    body.dark .pill {
-      background: #030712;
-    }
-
     .tile-visual {
       margin-top: 8px;
       border-radius: 16px;
       border: 1px dashed var(--border-soft);
       background: #f9fafb;
-      height: 120px;
+      height: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      font-size: 12px;
-      color: var(--muted-soft);
-      text-align: center;
-    }
-
-    body.dark .tile-visual {
-      background: #020617;
     }
 
     .tile-visual img {
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
-    /* Live roles */
-
+    /* Live roles pulse */
     @keyframes pulse-dot {
-      0% {
-        opacity: 0.4;
-        transform: scale(0.9);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.12);
-      }
-      100% {
-        opacity: 0.4;
-        transform: scale(0.9);
-      }
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.12); }
+      100% { opacity: 0.4; transform: scale(0.9); }
     }
 
     .live-container {
@@ -451,29 +350,8 @@
       border: 1px solid var(--border);
       background: var(--bg-soft);
       padding: 14px 14px 12px;
-      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
       font-size: 12px;
-    }
-
-    body.dark .live-container {
-      background: #020617;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    .live-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .live-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 500;
+      box-shadow: 0 16px 34px rgba(15, 23, 42, 0.06);
     }
 
     .live-dot {
@@ -481,32 +359,7 @@
       height: 9px;
       border-radius: 999px;
       background: var(--live-green);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
       animation: pulse-dot 1.8s ease-in-out infinite;
-    }
-
-    .live-sub {
-      font-size: 11px;
-      color: var(--muted-soft);
-      text-align: right;
-    }
-
-    .live-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    @media (max-width: 880px) {
-      .live-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      .live-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     .job-card {
@@ -519,30 +372,10 @@
       gap: 3px;
     }
 
-    body.dark .job-card {
-      background: #030712;
-    }
-
     .job-title {
       font-size: 13px;
       font-weight: 600;
       color: var(--accent);
-    }
-
-    body.dark .job-title {
-      color: #e5e7eb;
-    }
-
-    .job-meta {
-      font-size: 11px;
-      color: var(--muted-soft);
-    }
-
-    .job-pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 4px;
     }
 
     .job-pill {
@@ -554,50 +387,13 @@
       color: var(--muted);
     }
 
-    body.dark .job-pill {
-      background: #020617;
-    }
-
-    .job-cta {
-      margin-top: 5px;
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    .job-cta:hover {
-      text-decoration: underline;
-    }
-
-    /* Ask Ethiq section */
-
     .ask-box {
       border-radius: 22px;
       border: 1px solid var(--border);
       background: var(--bg-soft);
-      padding: 16px 16px 14px;
+      padding: 16px;
       box-shadow: 0 15px 35px rgba(15, 23, 42, 0.06);
       margin-top: 10px;
-    }
-
-    body.dark .ask-box {
-      background: #020617;
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.7);
-    }
-
-    .ask-heading {
-      font-size: 15px;
-      font-weight: 600;
-      margin: 0 0 4px;
-    }
-
-    .ask-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 0 0 10px;
     }
 
     .chat-input {
@@ -611,10 +407,6 @@
       background: #f9fafb;
     }
 
-    body.dark .chat-input {
-      background: #030712;
-    }
-
     .chat-input input {
       flex: 1;
       border: none;
@@ -622,10 +414,6 @@
       background: transparent;
       font-size: 14px;
       color: var(--fg);
-    }
-
-    .chat-input input::placeholder {
-      color: var(--muted-soft);
     }
 
     .chat-send {
@@ -636,41 +424,6 @@
       cursor: pointer;
       background: var(--accent);
       color: #ffffff;
-    }
-
-    .chat-send:hover {
-      opacity: 0.95;
-    }
-
-    .chat-hint {
-      margin-top: 7px;
-      font-size: 12px;
-      color: var(--muted-soft);
-    }
-
-    .chat-suggestions {
-      margin-top: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chat-suggestions button {
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      padding: 4px 8px;
-      font-size: 11px;
-      background-color: #f9fafb;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    body.dark .chat-suggestions button {
-      background-color: #030712;
-    }
-
-    .chat-suggestions button:hover {
-      border-color: var(--accent-soft);
     }
 
     .ai-response {
@@ -685,56 +438,13 @@
       white-space: pre-wrap;
     }
 
-    body.dark .ai-response {
-      background: #020617;
-    }
-
-    .ai-response-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted-soft);
-      margin-bottom: 3px;
-    }
-
-    /* Founders */
-
     .founders-inner {
       border-radius: 22px;
       border: 1px solid var(--border);
       background: var(--bg-soft);
       padding: 18px 16px 16px;
+      font-size: 13px;
       box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
-      font-size: 13px;
-    }
-
-    body.dark .founders-inner {
-      background: #020617;
-      box-shadow: 0 22px 44px rgba(0, 0, 0, 0.7);
-    }
-
-    .founders-title {
-      font-size: 16px;
-      font-weight: 600;
-      margin: 0 0 6px;
-    }
-
-    .founders-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 0 0 12px;
-    }
-
-    .founders-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    @media (max-width: 640px) {
-      .founders-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     .founder-card {
@@ -749,55 +459,6 @@
       color: var(--muted);
     }
 
-    body.dark .founder-card {
-      background: #030712;
-    }
-
-    .founder-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border-soft);
-      background: #e5e7eb;
-      flex-shrink: 0;
-    }
-
-    body.dark .founder-avatar {
-      background: #020617;
-    }
-
-    .founder-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      padding: 6px;
-    }
-
-    .founder-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .founder-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    body.dark .founder-name {
-      color: #e5e7eb;
-    }
-
-    .founder-role {
-      font-size: 11px;
-      color: var(--muted-soft);
-    }
-
-    /* Footer */
-
     .footer {
       font-size: 11px;
       color: var(--muted-soft);
@@ -805,24 +466,6 @@
       padding: 20px 16px 28px;
       border-top: 1px solid var(--border);
       margin-top: 28px;
-      background: linear-gradient(to top, rgba(248, 250, 252, 0.95), transparent);
-    }
-
-    body.dark .footer {
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.98), transparent);
-    }
-
-    /* Responsive header */
-
-    @media (max-width: 720px) {
-      .brand-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .brand-right {
-        align-self: flex-end;
-      }
     }
   </style>
 </head>
@@ -833,9 +476,7 @@
   <header class="brand-header">
     <div class="brand-inner">
       <div class="brand-left">
-        <div class="logo-box">
-          <span>ethiq</span>
-        </div>
+        <div class="logo-box"><span>ethiq</span></div>
         <div class="brand-titles">
           <div class="brand-main">Ethiq</div>
           <div class="brand-tagline">Better engineers, less drama</div>
@@ -857,12 +498,10 @@
       <!-- Hero -->
       <section class="hero" id="top">
         <div class="hero-eyebrow">Recruitment for founders and engineers</div>
-
         <h1 class="hero-heading">
           <span>Better engineers.</span>
           <span>Less drama.</span>
         </h1>
-
         <p class="hero-sub">
           Ethiq helps founders hire product and AI teams and helps engineers find roles that feel like a good fit, not a random logo.
         </p>
@@ -875,28 +514,6 @@
             I want a new role
           </button>
         </div>
-
-        <div class="hero-footnote">
-          Built for product engineers, AI and data folk who care about how things are done.
-        </div>
-
-        <div class="quick-steps">
-          <div class="quick-step">
-            <div class="quick-step-label">Step 1</div>
-            <div class="quick-step-title">Share what you need</div>
-            <div>One clear role or your next move. No giant form.</div>
-          </div>
-          <div class="quick-step">
-            <div class="quick-step-label">Step 2</div>
-            <div class="quick-step-title">We filter the noise</div>
-            <div>We focus on teams and roles that actually match your context.</div>
-          </div>
-          <div class="quick-step">
-            <div class="quick-step-label">Step 3</div>
-            <div class="quick-step-title">You get real options</div>
-            <div>Shortlists, conversations and offers that make sense.</div>
-          </div>
-        </div>
       </section>
 
       <!-- Hiring section -->
@@ -906,12 +523,11 @@
             <h2 class="section-title">Two simple paths</h2>
             <p class="section-sub">Founders hire through Ethiq. Engineers find roles through Ethiq. The work sits in between.</p>
           </div>
-          <div class="section-link">
-            No platforms to learn. Just email and real calls.
-          </div>
         </div>
 
         <div class="split-grid">
+
+          <!-- Founders tile -->
           <article class="tile">
             <div class="tile-label">For founders</div>
             <div>
@@ -926,13 +542,13 @@
                 <span class="pill">Data teams</span>
               </div>
             </div>
+
             <div class="tile-visual">
-              <!-- Replace with an image if you like -->
-              <!-- <img src="img/hiring-visual.png" alt="Hiring visual" /> -->
-              Simple visual here – a small team, a roadmap and one clear open role.
+              <img src="img/hire.png" alt="Hiring visual">
             </div>
           </article>
 
+          <!-- Engineers tile -->
           <article class="tile">
             <div class="tile-label">For engineers</div>
             <div>
@@ -947,12 +563,12 @@
                 <span class="pill">Clear salary and equity</span>
               </div>
             </div>
+
             <div class="tile-visual">
-              <!-- Replace with an image if you like -->
-              <!-- <img src="img/engineer-visual.png" alt="Engineer visual" /> -->
-              Simple visual here – an engineer, product, users and no whiteboard puzzles.
+              <img src="img/role.png" alt="Engineer role visual">
             </div>
           </article>
+
         </div>
       </section>
 
@@ -961,114 +577,62 @@
         <div class="section-header">
           <div>
             <h2 class="section-title">Live roles</h2>
-            <p class="section-sub">A small snapshot of roles that are open right now. These can sync from your CRM later.</p>
+            <p class="section-sub">A small snapshot of roles open right now.</p>
           </div>
         </div>
 
-        <div
-          class="live-container"
-          data-crm-source="ethiq-crm"
-          data-crm-entity="jobs"
-        >
-          <div class="live-header">
-            <div class="live-label">
-              <span class="live-dot"></span>
-              <span>Actively hiring</span>
-            </div>
-            <div class="live-sub">
-              Titles and details can be populated straight from your CRM.
-            </div>
+        <div class="live-container">
+          <div class="live-label" style="display:flex; align-items:center; gap:6px;">
+            <span class="live-dot"></span> Actively hiring
           </div>
 
-          <div class="live-grid" id="liveJobsGrid">
-            <article class="job-card" data-job-id="senior-ai-product-engineer">
-              <div class="job-title">Senior AI product engineer</div>
-              <div class="job-meta">London or remote Europe · Series A AI product</div>
-              <div class="job-pill-row">
+          <div class="live-grid" style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:12px;">
+            <article class="job-card">
+              <div class="job-title">Senior AI Product Engineer</div>
+              <div class="job-meta">London or remote Europe · Series A</div>
+              <div class="job-pill-row" style="display:flex; gap:6px; flex-wrap:wrap;">
                 <span class="job-pill">Python</span>
                 <span class="job-pill">LLM apps</span>
                 <span class="job-pill">Product minded</span>
               </div>
-              <a
-                class="job-cta"
-                href="mailto:hello@ethiq.io?subject=Senior%20AI%20product%20engineer%20role"
-              >
-                View details <span>↗</span>
-              </a>
+              <a class="job-cta" href="mailto:hello@ethiq.io?subject=Senior%20AI%20Product%20Engineer">View details →</a>
             </article>
 
-            <article class="job-card" data-job-id="staff-product-engineer">
-              <div class="job-title">Staff product engineer</div>
-              <div class="job-meta">Remote first Europe · B2B SaaS</div>
-              <div class="job-pill-row">
+            <article class="job-card">
+              <div class="job-title">Staff Product Engineer</div>
+              <div class="job-meta">Remote · B2B SaaS</div>
+              <div class="job-pill-row" style="display:flex; gap:6px; flex-wrap:wrap;">
                 <span class="job-pill">Full stack</span>
                 <span class="job-pill">Partner with product</span>
-                <span class="job-pill">Technical leadership</span>
+                <span class="job-pill">Leadership</span>
               </div>
-              <a
-                class="job-cta"
-                href="mailto:hello@ethiq.io?subject=Staff%20product%20engineer%20role"
-              >
-                View details <span>↗</span>
-              </a>
+              <a class="job-cta" href="mailto:hello@ethiq.io?subject=Staff%20Product%20Engineer">View details →</a>
             </article>
 
-            <article class="job-card" data-job-id="data-platform-engineer">
-              <div class="job-title">Senior data platform engineer</div>
+            <article class="job-card">
+              <div class="job-title">Senior Data Platform Engineer</div>
               <div class="job-meta">Hybrid London · Fintech</div>
-              <div class="job-pill-row">
+              <div class="job-pill-row" style="display:flex; gap:6px; flex-wrap:wrap;">
                 <span class="job-pill">Data infra</span>
                 <span class="job-pill">Modern stack</span>
-                <span class="job-pill">Impact on product</span>
+                <span class="job-pill">Impact</span>
               </div>
-              <a
-                class="job-cta"
-                href="mailto:hello@ethiq.io?subject=Senior%20data%20platform%20engineer%20role"
-              >
-                View details <span>↗</span>
-              </a>
+              <a class="job-cta" href="mailto:hello@ethiq.io?subject=Senior%20Data%20Platform%20Engineer">View details →</a>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- Ask Ethiq anything (GPT style box moved down) -->
+      <!-- Ask Ethiq -->
       <section class="section" id="ask-ethiq">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Ask Ethiq anything</h2>
-            <p class="section-sub">Use this when you are not sure if your problem is hiring, process or something else.</p>
-          </div>
-        </div>
-
         <div class="ask-box">
-          <h3 class="ask-heading">Tell us what you are trying to figure out</h3>
-          <p class="ask-sub">
-            You can ask about roles, hiring, interview loops or the market. In a real product this would give a live answer. For now it is a demo.
-          </p>
+          <h3 class="ask-heading">Ask Ethiq anything</h3>
+          <p class="ask-sub">In a real product this would give live answers. This is a demo.</p>
 
           <form class="chat-input" id="chatForm">
-            <input
-              type="text"
-              id="chatInput"
-              autocomplete="off"
-              placeholder="Ask Ethiq anything about hiring, roles or how we work..."
-            />
-            <button type="submit" class="chat-send" aria-label="Send">Ask</button>
+            <input type="text" id="chatInput" placeholder="Ask Ethiq anything about hiring or roles...">
+            <button type="submit" class="chat-send">Ask</button>
           </form>
-
-          <div class="chat-hint">Examples:</div>
-          <div class="chat-suggestions">
-            <button type="button" data-prompt="We are a seed stage AI startup and keep losing strong engineers late in the process. What should we change?">
-              Seed team losing engineers late
-            </button>
-            <button type="button" data-prompt="I am a senior product engineer who wants impact and calm teams. What kind of roles should I look at?">
-              Senior engineer with calm speed
-            </button>
-            <button type="button" data-prompt="How do you normally run a search for a staff product engineer?">
-              How do you run a search
-            </button>
-          </div>
 
           <div class="ai-response" id="aiResponse">
             <div class="ai-response-label">Demo reply</div>
@@ -1077,74 +641,56 @@
         </div>
       </section>
 
-      <!-- About / founders -->
+      <!-- Founders -->
       <section class="section" id="about">
         <div class="founders-inner">
           <h2 class="founders-title">About Ethiq</h2>
-          <p class="founders-sub">
-            Ethiq is run by hands on recruiters with a long history in tech, AI and data hiring. We use tools and automation where it helps and keep the human parts human.
-          </p>
+          <p class="founders-sub">Ethiq is run by hands-on recruiters with a long history in tech, AI and data hiring.</p>
 
-          <div class="founders-grid">
-            <article class="founder-card">
+          <div class="founders-grid" style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;">
+            <div class="founder-card">
               <div class="founder-avatar">
-                <img src="img/fraser.png" alt="Fraser Tait" />
+                <img src="img/fraser.png" alt="Fraser">
               </div>
-              <div class="founder-meta">
+              <div>
                 <div class="founder-name">Fraser Tait</div>
-                <div class="founder-role">Co founder · AI and software</div>
-                <div>
-                  Works with founders to define roles, interview plans and offers that good engineers say yes to.
-                </div>
+                <div class="founder-role">Co-founder · AI + Software</div>
+                Works with founders to define roles, interview plans and offers engineers say yes to.
               </div>
-            </article>
+            </div>
 
-            <article class="founder-card">
+            <div class="founder-card">
               <div class="founder-avatar">
-                <img src="img/anton.png" alt="Anton Howell" />
+                <img src="img/anton.png" alt="Anton">
               </div>
-              <div class="founder-meta">
+              <div>
                 <div class="founder-name">Anton Howell</div>
-                <div class="founder-role">Co founder · Data and platforms</div>
-                <div>
-                  Helps teams build data and platform groups that support product instead of slowing it down.
-                </div>
+                <div class="founder-role">Co-founder · Data + Platforms</div>
+                Helps teams build data and platform groups that support product instead of slowing it down.
               </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Footer -->
       <footer class="footer">
-        Want to talk like a human instead of a platform user<br>
-        Email <a href="mailto:hello@ethiq.io">hello@ethiq.io</a> about a role, a hire or your next move.
+        Email <a href="mailto:hello@ethiq.io">hello@ethiq.io</a> if you want to talk about a role, a hire or your next move.
       </footer>
+
     </div>
   </main>
 
   <script>
-    // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
-
-    function setTheme(isDark) {
-      if (isDark) {
-        document.body.classList.add('dark');
-        themeToggle.textContent = 'Light mode';
-      } else {
-        document.body.classList.remove('dark');
-        themeToggle.textContent = 'Dark mode';
-      }
-    }
-
-    setTheme(false); // default light, Notion style
-
     themeToggle.addEventListener('click', () => {
-      const isDark = !document.body.classList.contains('dark');
-      setTheme(isDark);
+      document.body.classList.toggle('dark');
+      themeToggle.textContent = document.body.classList.contains('dark')
+        ? 'Light mode'
+        : 'Dark mode';
     });
 
-    // Demo typing effect
+    // Typing demo
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const aiResponse = document.getElementById('aiResponse');
@@ -1152,10 +698,10 @@
     let typingInterval = null;
 
     function startTyping() {
-      const fullText =
+      const fullText = 
         "This is a demo response from Ethiq.\n\n" +
-        "In the real product, this box would use your context, the role and live market data to give you a proper answer.\n\n" +
-        "For now, if you want real help, email hello@ethiq.io with what you wrote here.";
+        "In the real product this would use your context, the role and market data to give an actual answer.\n\n" +
+        "For now, email hello@ethiq.io with your question.";
 
       aiResponse.style.display = 'block';
       aiResponseText.textContent = '';
@@ -1169,31 +715,15 @@
           return;
         }
         aiResponseText.textContent += fullText[i];
-        i += 1;
+        i++;
       }, 18);
     }
 
     chatForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const value = chatInput.value.trim();
-      if (!value) return;
+      if (!chatInput.value.trim()) return;
       startTyping();
     });
-
-    document.querySelectorAll('.chat-suggestions button').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const prompt = btn.getAttribute('data-prompt') || '';
-        if (prompt) {
-          chatInput.value = prompt;
-          startTyping();
-        }
-      });
-    });
-
-    // Live roles CRM hook
-    // A dev can replace the jobs in #liveJobsGrid using a fetch to your CRM API.
-    // Example shape:
-    // fetch('/api/jobs').then(res => res.json()).then(jobs => { ...render cards... });
   </script>
 </body>
 </html>
