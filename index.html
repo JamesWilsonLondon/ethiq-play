@@ -49,8 +49,6 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Header: logo far left, dark mode far right */
-
     .brand-header {
       width: 100%;
       box-sizing: border-box;
@@ -117,8 +115,6 @@
       background: var(--pill-bg-soft);
     }
 
-    /* Main wrapper */
-
     .main {
       flex: 1;
       display: flex;
@@ -130,8 +126,6 @@
       width: 100%;
       max-width: 960px;
     }
-
-    /* Hero */
 
     .hero {
       text-align: center;
@@ -163,8 +157,6 @@
       max-width: 460px;
       margin: 0 auto 20px;
     }
-
-    /* Chat-style input */
 
     .hero-chat {
       margin-top: 18px;
@@ -238,8 +230,6 @@
       background-color: var(--pill-bg-soft);
     }
 
-    /* Fake AI response */
-
     .ai-response {
       max-width: 600px;
       margin: 28px auto 0;
@@ -261,8 +251,6 @@
       color: var(--muted-soft);
       margin-bottom: 4px;
     }
-
-    /* Action buttons */
 
     .actions {
       margin-top: 40px;
@@ -299,8 +287,6 @@
       background-color: var(--accent);
       color: #ffffff;
     }
-
-    /* Founders section */
 
     .founders {
       margin-top: 40px;
@@ -382,8 +368,6 @@
       line-height: 1.5;
     }
 
-    /* Footer */
-
     .footer {
       font-size: 11px;
       color: var(--muted-soft);
@@ -401,8 +385,6 @@
     a:hover {
       text-decoration: underline;
     }
-
-    /* Responsive */
 
     @media (max-width: 840px) {
       .hero-heading {
@@ -433,7 +415,6 @@
 
 <body>
 
-  <!-- Header -->
   <header class="brand-header">
     <div class="brand-left">
       <div class="logo-box">
@@ -445,11 +426,9 @@
     </div>
   </header>
 
-  <!-- Main content -->
   <main class="main">
     <div class="layout">
 
-      <!-- Hero and chat -->
       <section class="hero">
         <div class="hero-eyebrow">Recruitment for AI, software and data teams</div>
 
@@ -489,7 +468,7 @@
         </div>
 
         <div class="ai-response" id="aiResponse">
-          <div class="ai-response-label">Demo reply</div>
+          <div class="ai-response-label">Ethiq GPT</div>
           <div id="aiResponseText"></div>
         </div>
 
@@ -507,7 +486,6 @@
         </div>
       </section>
 
-      <!-- Founders -->
       <section class="founders">
         <div class="founders-inner">
           <h2 class="founders-title">Who we are</h2>
@@ -561,51 +539,66 @@
       themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
     });
 
-    // Typing effect for demo response
+    // Chat logic
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const aiResponse = document.getElementById('aiResponse');
     const aiResponseText = document.getElementById('aiResponseText');
-    let typingInterval = null;
 
-    function startTyping() {
-      const fullText =
-        "This is a demo response from Ethiq.\n\n" +
-        "In the real product, this box would answer using your context and our data about roles, teams and market signals. " +
-        "For now, if you want a real reply, email hello@ethiq.io.";
+    async function sendToEthiq(message) {
+      const res = await fetch("/api/ethiq-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
 
-      aiResponse.style.display = 'block';
-      aiResponseText.textContent = '';
-      let i = 0;
-
-      if (typingInterval) clearInterval(typingInterval);
-
-      typingInterval = setInterval(() => {
-        if (i >= fullText.length) {
-          clearInterval(typingInterval);
-          return;
-        }
-        aiResponseText.textContent += fullText[i];
-        i += 1;
-      }, 18);
+      const data = await res.json();
+      return data.reply;
     }
 
-    chatForm.addEventListener('submit', (e) => {
+    function showLoading() {
+      aiResponse.style.display = "block";
+      aiResponseText.textContent = "Thinking about your hiring question...";
+    }
+
+    function showReply(text) {
+      aiResponse.style.display = "block";
+      aiResponseText.textContent = text;
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const value = chatInput.value.trim();
       if (!value) return;
-      startTyping();
+
+      showLoading();
+      try {
+        const reply = await sendToEthiq(value);
+        showReply(reply);
+      } catch (err) {
+        console.error(err);
+        showReply("Ethiq had a small meltdown. Try again?");
+      }
     });
 
     document.querySelectorAll('.chat-suggestions button').forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const prompt = btn.getAttribute('data-prompt') || '';
-        if (prompt) {
-          chatInput.value = prompt;
-          startTyping();
+        if (!prompt) return;
+
+        chatInput.value = prompt;
+        showLoading();
+
+        try {
+          const reply = await sendToEthiq(prompt);
+          showReply(reply);
+        } catch (err) {
+          console.error(err);
+          showReply("Error connecting to Ethiq. Try again?");
         }
       });
     });
   </script>
+
 </body>
 </html>
