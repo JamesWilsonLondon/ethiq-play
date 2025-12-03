@@ -241,7 +241,6 @@
       line-height: 1.6;
       text-align: left;
       display: none;
-      white-space: pre-wrap;
     }
 
     .ai-response-label {
@@ -250,6 +249,50 @@
       letter-spacing: 0.12em;
       color: var(--muted-soft);
       margin-bottom: 4px;
+    }
+
+    /* Markdown styles for the AI response content */
+    #aiResponseText h1,
+    #aiResponseText h2,
+    #aiResponseText h3 {
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    #aiResponseText p {
+      margin: 0 0 0.75rem 0;
+    }
+
+    #aiResponseText ul {
+      padding-left: 1.25rem;
+      margin: 0 0 0.75rem 0;
+    }
+
+    #aiResponseText ol {
+      padding-left: 1.25rem;
+      margin: 0 0 0.75rem 0;
+    }
+
+    #aiResponseText li {
+      margin-bottom: 0.25rem;
+    }
+
+    #aiResponseText strong {
+      font-weight: 600;
+    }
+
+    #aiResponseText a {
+      color: var(--link);
+      text-decoration: underline;
+    }
+
+    #aiResponseText code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background-color: var(--pill-bg-soft);
+      padding: 0.15rem 0.3rem;
+      border-radius: 4px;
+      font-size: 0.85em;
     }
 
     .actions {
@@ -530,6 +573,9 @@
     </div>
   </main>
 
+  <!-- Markdown parser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <script>
     // Dark mode toggle
     const themeToggle = document.getElementById('themeToggle');
@@ -563,7 +609,8 @@
 
     function showReply(text) {
       aiResponse.style.display = "block";
-      aiResponseText.textContent = text;
+      // Render Markdown to HTML
+      aiResponseText.innerHTML = marked.parse(text || "");
     }
 
     chatForm.addEventListener('submit', async (e) => {
